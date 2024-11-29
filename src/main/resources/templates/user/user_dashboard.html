@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/user_navbar::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	
+	<title>User DashBoard</title>
+</head>
+<body>
+  <section class=" m-5 p-5 text-2xl text-center bg-blue-400 w-full">
+	<h1 class="">Welcome <span th:text="${user.name}"></span> Dashboard </h1>
+	<h1 th:text="${user.name}"></h1>
+	<h1 th:text="${user.email}"></h1>
+	<h1 th:text="${user.role}"></h1>
+	
+	</section>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="navbar::Layout(~{::section})" >
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" th:href="@{/css/output.css}" />
+	<title>Login Page</title>
+</head>
+<body>
+  <section>
+	<div class="flex items-center justify-center min-h-screen bg-gray-200 ">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm border border-black bg-sky-200">
+        	
+        	<div class="" th:if="${param.error}">
+        	<h1 class="text-red-500 text-2xl font-serif">Invalid User And Password</h1>
+        	</div>
+        	
+        	<div class="" th:if="${param.logout}">
+        	<h1 class="text-green-500 text-2xl font-serif">you have Successfully Logout</h1>
+        	</div>
+        	
+        	
+        	
+            <h2 class="text-2xl font-bold mb-4 text-center text-indigo-500">Login</h2>
+            
+            <form th:action="@{/dologin}" method="post" >
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-indigo-500">UserName</label>
+                    <input type="text" name="username" class="mt-1 p-2 w-full border border-black rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>
+                
+                <div class="mb-6">
+                    <label for="password" class="block text-sm font-medium text-indigo-500">Password</label>
+                    <input type="password"  name="password" class="mt-1 p-2 w-full border border-black rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                </div>	
+                
+                <div class="flex items-center justify-between">
+                    <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Sign In
+                    </button>
+                </div>
+                
+                <p class="mt-4 text-center text-sm text-gray-600">
+                    Don't have an account? <a href="/register" class="text-indigo-500 hover:underline">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/user_navbar::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+<section class="m-4 w-full">
+          
+   	<div th:if="${message}">
+	      <div th:if="${message.type}=='success' ">
+			  <p th:text="${message.content}" class="text-green-700 text-xl text-center"></p>
+		  </div>
+          <div th:if="${message.type}=='error' ">
+	    	  <p th:text="${message.content}" class="text-red-700 text-xl text-center"></p>
+		  </div>
+   </div>
+			   
+  <h1 class="text-center font-semibold text-3xl font-serif"> Contacts</h1>
+  <table class=" w-full bg-white border border-gray-200 mt-3 mb-2">
+                <thead class="bg-gr-50">
+                    <tr>
+                        <th class="py-2 px-4 border-2 border-gray-200 text-left text-lg font-serif text-black">#ID</th>
+                        <th class="py-2 px-4 border-2 border-gray-200 text-left text-lg font-serif text-black">Name</th>
+                        <th class="py-2 px-4 border-2 border-gray-200 text-left text-lg font-serif text-black">Email</th>
+                        <th class="py-2 px-4 border-2 border-gray-200 text-left text-lg font-serif text-black">Phone No.</th>
+                        <th class="py-2 px-4 border-2 border-gray-200 text-left text-lg font-serif text-black">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="hover:bg-gray-100" th:each="c : ${contacts}">
+                    	 <td class="py-2 px-4 border-2 border-gray-200 text-sm font-semibold text-gray-900" th:text="'SCM00'+${c.cid}"></td>
+                    	 
+                         <td class="py-2 px-4 border-2 border-gray-200 text-sm text-gray-900" >
+                            <img src="" th:src="@{'/images/'+${c.image}}" class="h-10 w-10 rounded-full" alt="" />
+                            <span th:text="${c.name}"></span>
+                         </td>
+                        
+                         <td class="py-2 px-4 border-2 border-gray-200 text-sm text-gray-900 hover:text-blue-500" >
+                            <a th:href="@{'/user/'+${c.cid}+'/contact'}">
+                              <span th:text="${c.email}"></span>
+                            </a>
+                            
+                         </td>
+                        
+                         <td class="py-2 px-4 border-2 border-gray-200 text-sm text-gray-900" th:text="${c.phone}"></td>
+                        
+                         <td class="py-2 px-4 border-b border-gray-200 text-sm text-gray-700">
+                            <a  class="bg-yellow-500 hover:bg-yellow-600  text-white text-lg px-2 py-1 rounded-full w-14 h-7 text-xs mr-1">Edit</a>
+                            <a th:href="@{ '/user/delete/'+${c.cid} }" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-full w-14 h-7 text-xs">Delete</a>
+                         </td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+
+		<!-- for pagination the view contacts -->
+		
+		<nav classs="h-10 w-10">
+			<ul class="inline-flex -space-x-px text-sm">
+			
+				<li th:if="${currentpage != 0}">
+				     <a  href="#"
+				         th:href="@{'/user/view-contacts/'+${currentpage-1}}"
+					     class="flex items-center justify-center px-3 h-8  text-blue-500 bg-white border border-gray-300  ">Previous</a>
+				</li>
+				
+				<li th:each="c:${#numbers.sequence(1,totalpage)}">
+				     <a  href="#"
+				         th:classappend="${currentpage==c-1?'active':''}"
+				         th:href="@{'/user/view-contacts/'+${c-1}}"
+					     class="flex items-center justify-center px-3 h-8  text-blue-500 bg-white border border-gray-300  "><span th:text="${c}"></span></a>
+				</li>
+
+				<li th:if="${currentpage+1 != totalpage}">
+				    <a  href="#"
+				        th:href="@{'/user/view-contacts/'+${currentpage+1}}"
+				     	class="flex items-center justify-center px-3 h-8  text-blue-500 bg-white border border-gray-300 ">Next</a>
+				</li>
+			</ul>
+		</nav>
+
+	</section>
+	 
+</body>
+</html>

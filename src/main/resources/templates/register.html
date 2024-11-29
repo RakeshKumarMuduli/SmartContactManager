@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="navbar::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" th:href="@{/css/output.css}" />
+	<title>Register Page</title>
+</head>
+<body>
+	<section class="bg-gray-100 flex items-center justify-center min-h-screen">
+		 <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
+        
+        
+        <form th:action="@{do_register}" method="POST" th:object="${user}">
+			
+	<!--		
+		<div th:if="${session.message}">
+           <p th:text="${session.message.content}"></p>
+           <p th:remove="tag" th:text="${#session.removeAttribute('message')}"></p>
+         </div>
+         
+    -->
+			<!-- use for sucsseful and error message in the form   -->
+			<div>
+ 				<div th:if="${messageContent}">
+					 <div th:if="${messageContent.type}=='success' ">
+						  <p th:text="${messageContent.content}" class="text-green-700 text-xl text-center"></p>
+					 </div>
+                     <div th:if="${messageContent.type}=='error' ">
+						  <p th:text="${messageContent.content}" class="text-red-700 text-xl text-center"></p>
+					 </div>
+			   </div>
+			
+			
+			
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                <input type="text"
+                	   id="name" 
+                	   th:classappend="${#fields.hasErrors('name')}?'is-invalid':' ' "
+                	   name="name"
+                	   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                	   
+ 					<div th:if="${#fields.hasErrors('name')}" class="visible">
+				      <div th:each="e : ${#fields.errors('name')}" th:text="${e}" class="text-pink-600 text-sm mt-2"></div>
+			       </div>          
+            </div>
+            
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input type="email" 
+                	   id="email"
+                	   name="email" 
+                	   th:classappend="${#fields.hasErrors('email')}?'is-invalid':' ' "
+                	   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+            		   
+ 					<div th:if="${#fields.hasErrors('email')}" class="visible">
+				      <div th:each="e : ${#fields.errors('email')}" th:text="${e}" class="text-pink-600 text-sm mt-2"></div>
+			       </div> 
+			       
+            </div>
+            
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input type="password"
+	                 id="password"
+	                 th:classappend="${#fields.hasErrors('password')}"
+	                  name="password" 
+	                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+            
+            		<div th:if="${#fields.hasErrors('password')}" class="visible">
+				      <div th:each="e : ${#fields.errors('password')}" th:text="${e}" class="text-pink-600 text-sm mt-2"></div>
+			       </div> 
+            			
+            </div>
+            <div class="mb-6">
+                <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+                <textarea id="description" name="about" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+            </div>				
+             <div class="mb-6">
+                <label class="flex items-center">
+                    <input type="checkbox" 
+                    name="enable" 
+                    class="form-checkbox h-5 w-5 text-blue-600">
+                    <span class="ml-2 text-gray-700">I agree to the terms and conditions</span>
+                </label>
+                
+               
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Register
+                </button>
+                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Reset
+                </button>
+            </div>
+        </form>
+    </div>
+	</section>
+</body>
+</html>

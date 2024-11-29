@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="user/user_navbar::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<section class="p-10  w-full  " th:if="${contact2}">
+	  <img th:src="@{'/images/'+${contact2.image}}" class="h-44 w-44  ml-96 rounded-lg" alt=""  />
+	  <h1 th:text="${contact2.name}" class="font-bold ml-96 text-lg font-serif mt-2 mb-2"></h1>
+	 
+    <div class="w-full bg-white rounded-xl shadow-lg ">
+        <table class="w-full ">
+            <thead>
+                <tr>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-black uppercase tracking-wider">
+                        Property
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-black uppercase tracking-wider">
+                        Details
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-gray-50 hover:bg-gray-100">
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap font-bold" >#ID</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap font-semibold"th:text="'SCM00'+${contact2.cid}"></p>
+                    </td>
+                </tr>
+               
+                <tr class="bg-gray-50 hover:bg-gray-100">
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap font-bold" >Phone No.</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap"th:text="${contact2.phone}"></p>
+                    </td>
+                </tr>
+                <tr class="bg-white hover:bg-gray-50">
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap font-bold">Work</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap" th:text="${contact2.work}">Software Engineer</p>
+                    </td>
+                </tr>
+                <tr class="bg-gray-50 hover:bg-gray-100">
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap font-bold">Description</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap" th:text="${contact2.description}"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+	 
+	
+	</section>
+	<section th:unless="${contact2}" class="p-5 text-2xl text-center text-red-500"> Not Authorized to Access.....</section>
+</body>
+</html>
