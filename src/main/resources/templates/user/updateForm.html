@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/user_navbar::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	
+	<title>User DashBoard</title>
+</head>
+<body>
+  <section class=" text-2xl text-center  w-full h-max">
+      <div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-300 to-orange-100 p-6">
+      <div class="bg-white shadow-xl rounded-2xl flex w-full max-w-4xl overflow-hidden">
+        
+        
+        <div class="hidden md:flex flex-col justify-center items-center w-1/2 bg-gradient-to-t from-pink-700 to-pink-300 p-10 text-white">
+          <h2 class="text-4xl font-bold mb-4">Welcome to </h2>
+          <h1 class="text-xl text-pink-200">Smart Contact Manager</h1>
+        </div>
+
+        
+        <div class="w-full md:w-1/2 p-8">
+          <h2 class="text-2xl  text-gray-800">Update Form</h2>
+         
+         <form th:action="@{/user/updatecontact}" th:object="${con}" method="post" enctype="multipart/form-data" class="space-y-2 text-lg ">
+            
+            <input type="hidden" th:value="${contact.cid}" name="cid"/>
+            <div>
+                <label for="firstname" class="block text-left text-gray-400">First Name</label>
+                <input th:value="${contact.name}" type="text" id="firstname" name="name" class="  w-full px-2 py-1 border-b-2 border-l-2  border-pink-500 rounded-lg focus:outline-none " >
+            </div>
+            
+            <div>
+                <label for="lastname" class="block text-left text-gray-400">Last Name</label>
+                <input th:value="${contact.secondname}"  type="text" id="lastname" name="secondname" class= "w-full px-2 py-1 border-b-2 border-l-2  border-pink-500 rounded-lg focus:outline-none " >
+            </div>
+            
+            <div>
+                <label for="email" class="block text-left text-gray-400">Email</label>
+                <input th:value="${contact.email}"  type="email" id="email" name="email" class=" w-full px-2 py-1 border-b-2 border-l-2  border-pink-500 rounded-lg focus:outline-none " >
+            </div>
+            
+            <div>
+                <label for="work" class="block text-left text-gray-400">Work</label>
+                <input th:value="${contact.work}"  type="text" id="work" name="work" class=" w-full px-2 py-1 border-b-2  border-l-2 border-pink-500 rounded-lg focus:outline-none  ">
+            </div>
+            
+            <div>
+                <label for="phoneno" class="block text-left text-gray-400">Phone Number</label>
+                <input th:value="${contact.phone}"  type="tel" id="phoneno" name="phone" class=" w-full px-2 py-1 border-b-2 border-l-2  border-pink-500 rounded-lg focus:outline-none  ">
+            </div>
+            <div>
+                <label for="contact" class="block text-left text-gray-400">Contact Image</label>
+                <input type="file" id="phoneno" name="profileimage" class="w-full px-2 py-1 ">
+                <img src="" th:src="@{'/images/'+${contact.image}}" class="h-20 w-20 rounded-full" alt="" />
+                
+            </div>
+            
+                        
+            <div>
+                <label for="description" class="block text-left text-gray-400">Description</label>
+                <textarea th:text="${contact.description}"  id="description" name="description" rows="4" class=" w-full px-2 py-1 border-b-2 border-l-2 border-pink-500 rounded-lg focus:outline-none  "></textarea>
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" class="w-full bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-blue-600">Submit</button>
+            </div>
+            
+            
+        </form>
+           
+        </div>
+        <div class="text-center ">
+                <a th:href="@{/user/view-contacts/0}" class="w-full  bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 ">cancel</a>
+            </div> 
+      </div>
+    </div>
+	</section>
+</body>
+</html>

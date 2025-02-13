@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import com.contactmanager.Dao.contactRepository;
 import com.contactmanager.Dao.userRepository;
 import com.contactmanager.Entity.Contact;
@@ -44,7 +45,9 @@ public class UserController {
 	private contactRepository contactrepository;
 	
 	
-	// principal is used to access the current user's information 
+	
+	
+	// principal is used to access the current user's information ...............
 	@ModelAttribute
 	public void addCommonData(Model model,Principal principal) {
 		String name = principal.getName();
@@ -144,24 +147,83 @@ public class UserController {
 		
 		return "user/singlecontact";
 	}
+	
 	@GetMapping("/delete/{cid}")
 	public String deleteContact( @PathVariable("cid") Integer id,Model model,HttpSession session ) {
 		
 		Optional<Contact> contacts = this.contactrepository.findById(id);
 		Contact contact = contacts.get();
-		System.out.println(contact.getName());
+		//System.out.println(contact.getName());
 		
+		this.contactrepository.deleteByContactId(contact.getCid());
 		
 		contact.setUser(null);
+		
 		this.contactrepository.delete(contact);
 		
-		session.setAttribute("message",new Message("contact successfully deleted .........", "success"));
 		
 		return "redirect:/user/view-contacts/0";
 	}
-
+	
+	//open update form
+	@PostMapping("/update/{cid}")
+	public String updateContact(@PathVariable("cid") Integer id,Model model,HttpSession session) {
+		
+		Optional<Contact> contacts = this.contactrepository.findById(id);
+		Contact contact = contacts.get();
+		//System.out.println(contact.getName());
+		
+		model.addAttribute("contact",contact);
+		return "user/updateForm";
+	}
+  
+	//update logic
+	@PostMapping("/updatecontact")
+	public String processUpadate(@ModelAttribute("con") Contact contact,@RequestParam("profileimage") MultipartFile file,Principal principal,HttpSession session) {
+		
+		System.out.println(contact.getName()+"  --- "+contact.getCid());
+		
+	    String name = principal.getName();
+	    User user = this.userrepository.getUserByUserName(name);
+	    
+	    	//old contact details
+	    	Contact oldcontact = this.contactrepository.getById(contact.getCid());
+	    	//System.out.println(oldcontact.getName());
+	    	
+			try {
+	    	if(!file.isEmpty()) {
+	    		
+	    		// delete from local
+	    		File deletefile = new ClassPathResource("static/images").getFile();
+	    		File file1=new File(deletefile,oldcontact.getImage());
+	    		file1.delete();
+	    		
+	    		//upate the image in DB And also local
+	    		File uploadDir = new ClassPathResource("static/images").getFile();
+	    		Path path = Paths.get(uploadDir.getAbsolutePath() + File.separator + file.getOriginalFilename());
+	            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+	            
+	            contact.setImage(file.getOriginalFilename());
+	    		
+	    	}
+	    	else {
+	    			contact.setImage(oldcontact.getImage());
+	    	}
+	    	
+			}catch(Exception e) {
+				e.printStackTrace();
+				
+			}
+			
+	    	contact.setUser(user);
+	    	this.contactrepository.save(contact);
+	    	
+	    	
+		
+		return "redirect:/user/"+contact.getCid()+"/contact";
+	}
 }
 
 /*
- npx tailwindcss -i ./src/main/resources/static/css/input.css -o./src/main/resources/static/css/output.css --watch
+ npx tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch
  */

@@ -45,9 +45,12 @@
                         
                          <td class="py-2 px-4 border-2 border-gray-200 text-sm text-gray-900" th:text="${c.phone}"></td>
                         
-                         <td class="py-2 px-4 border-b border-gray-200 text-sm text-gray-700">
-                            <a  class="bg-yellow-500 hover:bg-yellow-600  text-white text-lg px-2 py-1 rounded-full w-14 h-7 text-xs mr-1">Edit</a>
-                            <a th:href="@{ '/user/delete/'+${c.cid} }" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-full w-14 h-7 text-xs">Delete</a>
+                         <td class="py-2 px-4 border-b border-gray-200 text-sm text-gray-700  ">
+                         
+                             <form method="post" th:action=" @{ '/user/update/'+${c.cid} } "  class="inline-block mb-2 ">
+                                   <button type="submit"  class="bg-yellow-500 hover:bg-yellow-600  text-white text-lg px-2 py-1 rounded-full w-14 h-7 text-xs mr-1">Edit</button>
+                             </form>
+                             <a th:href="@{ '/user/delete/'+${c.cid} }" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-full w-14 h-7 text-xs">Delete</a>
                          </td>
                     </tr>
                    

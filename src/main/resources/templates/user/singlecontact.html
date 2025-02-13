@@ -5,7 +5,18 @@
 	<title>Document</title>
 </head>
 <body>
-	<section class="p-10  w-full  " th:if="${contact2}">
+	<section class="p-10  w-full" th:if="${contact2}">
+	
+			<!-- uses for update succesfull message -->
+	         <div th:if="${message}">
+			    <div th:if="${message.type == 'success'}">
+			        <p th:text="${message.content}" class="text-green-700 text-xl text-center"></p>
+			    </div>
+			    <div th:if="${message.type == 'error'}">
+			        <p th:text="${message.content}" class="text-red-700 text-xl text-center"></p>
+			    </div>
+			</div>
+		   
 	  <img th:src="@{'/images/'+${contact2.image}}" class="h-44 w-44  ml-96 rounded-lg" alt=""  />
 	  <h1 th:text="${contact2.name}" class="font-bold ml-96 text-lg font-serif mt-2 mb-2"></h1>
 	 

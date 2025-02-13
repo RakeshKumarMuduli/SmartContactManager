@@ -12,7 +12,7 @@
         <!-- Top Bar -->
         <div class="container bg-pink-500 mx-auto flex justify-between items-center h-16 p-2 ">
             <a href="#" class="text-white text-3xl font-serif">Smart Contact Manager</a>
-            <a href="#" class="text-white hover:text-gray-200" th:text="${user.name}"></a>
+            <a th:href="@{/user/dash}" class="text-white hover:text-gray-200" th:text="${user.name}"></a>
             <div class="space-x-4">
                 <a href="#" th:href="@{/home}" class="text-white hover:text-gray-200">Home</a>
                 <a href="#" th:href="@{/logout}" class="text-white hover:text-gray-200">Logout</a>

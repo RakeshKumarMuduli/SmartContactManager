@@ -43,7 +43,6 @@ public class User {
 	private boolean enable;
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	
 	private List<Contact> contacts=new ArrayList();
 	
 	
