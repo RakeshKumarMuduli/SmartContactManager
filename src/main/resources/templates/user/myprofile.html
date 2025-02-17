@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/user_navbar::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	
+	<title>User DashBoard</title>
+</head>
+<body>
+  <section class=" m-5 p-5 text-2xl text-center bg-stone-300 w-full">
+		  <div class="flex justify-center">
+		   <img th:src="@{/images/RakeshPhoto.jpg}" class="h-64 w-64  rounded-lg" alt="profile pic"  />
+		  </div>
+ 	  <h1 th:text="${user.name}" class="font-bold  text-lg font-serif mt-2 mb-2"></h1>
+	 
+    <div class="w-full bg-white rounded-xl shadow-lg ">
+        <table class="w-full ">
+            <thead>
+                <tr>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-bold text-black uppercase tracking-wider">
+                        Property
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-bold text-black uppercase tracking-wider">
+                        Details
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-gray-50 hover:bg-gray-100">
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap font-bold" >#UserID</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap font-semibold"th:text="'#USER-00'+${user.id}"></p>
+                    </td>
+                </tr>
+               
+                
+                <tr class="bg-white hover:bg-gray-50">
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap font-bold">Role</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap" th:text="${user.role}"></p>
+                    </td>
+                </tr>
+                <tr class="bg-gray-50 hover:bg-gray-100">
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap font-bold">User Active</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap" th:text="${user.enable}"></p>
+                    </td>
+                </tr>
+                 <tr class="bg-gray-50 hover:bg-gray-100">
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap font-bold">About</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap" th:text="${user.about}"></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+	</section>
+</body>
+</html>

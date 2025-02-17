@@ -6,20 +6,13 @@
 	<title>Register Page</title>
 </head>
 <body>
-	<section class="bg-gray-100 flex items-center justify-center min-h-screen">
+	<section class="bg-gray-100 flex items-center justify-center min-h-screen">     <!--  it's Old Register page   -->
 		 <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
         
         
         <form th:action="@{do_register}" method="POST" th:object="${user}">
 			
-	<!--		
-		<div th:if="${session.message}">
-           <p th:text="${session.message.content}"></p>
-           <p th:remove="tag" th:text="${#session.removeAttribute('message')}"></p>
-         </div>
-         
-    -->
 			<!-- use for sucsseful and error message in the form   -->
 			<div>
  				<div th:if="${messageContent}">

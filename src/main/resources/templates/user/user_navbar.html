@@ -35,11 +35,11 @@
                     </button>
                 </div>
                 <nav :class="open ? 'block' : 'hidden'" class="flex-grow p-4  ">
-                    <a href="#" th:href="@{/home}" class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-200">Home</a>
+                    <a href="#" th:href="@{/user/dash}" class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-200">Home</a>
                     <a href="#" th:href="@{/user/view-contacts/0}" class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-200">View Contacts</a>
                     <a href="#" th:href="@{/user/addcontact}" class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-200">Add Contact</a>
-                    <a href="#" th:href="@{/profile}" class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-200">Your Profile</a>
-                    <a href="#" th:href="@{/settings}" class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-200">Settings</a>
+                    <a href="#" th:href="@{/user/profile}" class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-200">Your Profile</a>
+                    <a href="#" th:href="@{/user/setting}" class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-200">Settings</a>
                     <a href="#" th:href="@{/logout}" class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-200">Logout</a>
                     
                 </nav>

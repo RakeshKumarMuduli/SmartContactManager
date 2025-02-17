@@ -6,11 +6,36 @@
 	<title>User DashBoard</title>
 </head>
 <body>
-  <section class=" m-5 p-5 text-2xl text-center bg-stone-400 w-full">
-	<h1 class="">Welcome <span th:text="${user.name}"></span> Dashboard </h1>
-	<h1 th:text="${user.name}"></h1>
-	<h1 th:text="${user.email}"></h1>
-	<h1 th:text="${user.role}"></h1>
+  <section class=" text-2xl text-center bg-stone-400 w-full">
+	<div class="bg-gradient-to-r from-blue-400 to-blue-600 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto px-6 lg:px-20">
+        <div class="flex flex-col lg:flex-row items-center justify-between">
+            <!-- Text Section -->
+            <div class="text-white mb-10 lg:mb-0 lg:w-1/2">
+                <div class="mb-4">
+                    <span class="bg-white text-blue-600 px-3 py-1 rounded-full text-sm font-semibold">Hi There!</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">I am <span th:text="${user.name}"></span><br />A Java Developer</h1>
+                <p class="mb-6 text-lg">As part of my graduation project, I decided to publish my latest projects and assignments on this site. I’ve spent countless hours and sleepless nights putting it together and am very excited to share it with you.</p>
+                <div class="flex space-x-4 mb-6">
+                    <button class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold shadow-lg">Hire Me</button>
+                    <button class="bg-white text-blue-700 hover:text-blue-800 px-6 py-3 rounded-lg font-semibold shadow-lg">View Portfolio</button>
+                </div>
+                
+                <div class="flex space-x-6 text-lg">
+                    <a href="#" class="hover:text-blue-200">Facebook</a>
+                    <a href="#" class="hover:text-blue-200">Twitter</a>
+                    <a href="#" class="hover:text-blue-200">LinkedIn</a>
+                </div>
+            </div>
+
+            
+            <div class="lg:w-1/2 flex justify-center">
+                <img th:src="@{/images/image1.webp}" alt="Profile" class="w-full h-full rounded-lg ">
+            </div>
+        </div>
+    </div>
+</div>
 	
 	</section>
 </body>

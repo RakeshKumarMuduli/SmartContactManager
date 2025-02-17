@@ -204,23 +204,31 @@ public class UserController {
 	            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 	            
 	            contact.setImage(file.getOriginalFilename());
-	    		
 	    	}
 	    	else {
 	    			contact.setImage(oldcontact.getImage());
 	    	}
 	    	
 			}catch(Exception e) {
-				e.printStackTrace();
-				
+				e.printStackTrace();	
 			}
 			
 	    	contact.setUser(user);
 	    	this.contactrepository.save(contact);
 	    	
-	    	
-		
 		return "redirect:/user/"+contact.getCid()+"/contact";
+	}
+	
+	@GetMapping("/profile")
+	public String Profileset(Model model) {
+		
+		
+		return "user/myprofile";
+	}
+	
+	@GetMapping("/setting")
+	public String setting() {
+		return "user/setting";
 	}
 }
 
